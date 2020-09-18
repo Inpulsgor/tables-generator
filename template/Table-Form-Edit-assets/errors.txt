@@ -1,0 +1,2 @@
+[2020-9-17 15:17:20] layer "btn_delete.svg, btn_delete.png": Duplicate path: btn_delete.svg
+[2020-9-17 15:17:20] layer "btn_delete.svg, btn_delete.png": Duplicate path: btn_delete.png
