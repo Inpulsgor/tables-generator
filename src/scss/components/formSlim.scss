@@ -1,0 +1,48 @@
+@import "variables";
+
+.form-slim {
+  font-family: $main-font;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  @include for-phone-only {
+    padding: 5%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  @include for-tablet-up {
+    width: 280px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 18px 17px 23px;
+  }
+
+  @include for-desktop-up {
+    font-size: $main-font-size;
+    line-height: 30px;
+    margin-right: 166px;
+  }
+
+  &__input {
+    width: 100%;
+    border: 1px solid $form-input;
+    border-radius: $border-radius;
+    height: 40px;
+    padding-left: 16px;
+    
+    &:not(:last-of-type) {
+      margin-bottom: 18px;
+    }
+    &:last-of-type {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__button {
+    height: 40px;
+    border-radius: $border-radius;
+  }
+}
+
+

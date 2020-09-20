@@ -1,39 +1,51 @@
 import React from "react";
 
-const FirsForm = ({ handleChange, handleSubmit, inputValue }) => {
+const FormSlim = ({ handleChange, handleSubmit, onFocus, onBlur,  inputValues: {name, surname, age, city} }) => {
   return (
-    <form className="form form-slim" onSubmit={handleSubmit}>
+    <form className="form-slim form" onSubmit={handleSubmit}>
       <input
-      value={inputValue}
+      value={name}
         type="text"
         name="name"
+        placeholder="Name"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__input"
+        className="form-slim__input"
       />
       <input
-      value={inputValue}
+      value={surname}
         type="text"
         name="surname"
+        placeholder="Surname"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__input"
+        className="form-slim__input"
       />
       <input
-      value={inputValue}
-        type="text"
+      value={age}
+        type="number"
         name="age"
+        placeholder="Age"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__input"
+        className="form-slim__input"
       />
       <input
-      value={inputValue}
+      value={city}
         type="text"
         name="city"
+        placeholder="City"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__input"
+        className="form-slim__input"
       />
-      <button type="submit" className="form__button"></button>
+      <button type="submit" className="form-slim__button button">add</button>
     </form>
   );
 };
 
-export default FirsForm;
+export default FormSlim;

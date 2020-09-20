@@ -1,0 +1,66 @@
+@import "variables";
+
+.form-wide {
+  padding: 5%;
+  font-family: $main-font;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  @include for-phone-only {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  @include for-tablet-up {
+    width: 547px;
+    margin: 0 auto;
+    padding: 18px 17px 25px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  @include for-desktop-up {
+    font-size: $main-font-size;
+    padding: 18px 17px 23px;
+    line-height: 30px;
+    margin-right: 166px;
+    width: 280px;
+  }
+
+  &__input {
+    width: 100%;
+    border: 1px solid $form-input;
+    border-radius: $border-radius;
+    height: 40px;
+    padding-left: 16px;
+    
+    @include for-phone-only {
+      &:not(:last-of-type) {
+        margin-bottom: 18px;
+      }
+      &:last-of-type {
+        margin-bottom: 30px;
+      }
+    }
+
+    @include for-tablet-up {
+      width: 48.4%;
+      margin-bottom: 18px;
+    }
+  }
+
+  &__button {
+    height: 40px;
+    border: none;
+    border-radius: $border-radius;
+
+    @include for-tablet-up {
+      width: 245px;
+      margin: 0 auto;
+    }
+  }
+}
+
+

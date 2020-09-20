@@ -1,0 +1,14 @@
+@import "variables";
+
+.modal {
+  width: 536px;
+
+  &__heading {
+    height: 37px;
+    display: flex;
+    justify-content: space-between;
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+    background-color: $modal-header-background;
+  }
+}

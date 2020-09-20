@@ -1,1 +1,68 @@
 @import "variables";
+
+.table-wrapper {
+  font-family: $main-font;
+  margin-bottom: 30px;
+}
+
+// COPY TABLE & DELETE TABLE - BUTTONS 
+.control {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+
+  &__button_copy {
+    font-size: $main-font-size;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    padding: 0 17px;
+    margin-right: 25px;
+    color: $button-font-color;
+    background-color: $button-background;
+    border-radius: $border-radius;
+  }
+
+  &__button_delete {
+    border: none;
+    background-color: $main-background;
+    margin-right: 12px;
+    fill: #f04e34;
+  }
+}
+
+// TABLE STYLES
+.table {
+  border-collapse: collapse;
+  border-radius: 13px;
+  border: 1px solid #8c9296;
+  width: 100%;
+}
+
+.table-container {
+  width: 595px;
+  margin: 0 auto;
+}
+
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.table th {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 30px;
+  border: none;
+  background-color: $table-header-background;
+  color: white;
+}

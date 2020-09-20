@@ -1,39 +1,51 @@
 import React from "react";
 
-const SecondForm = ({ handleChange, handleSubmit, inputValue }) => {
+const FormWide = ({ handleChange, handleSubmit, onFocus, onBlur, inputValues: {name, surname, age, city} }) => {
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form-wide form" onSubmit={handleSubmit}>
       <input
-      value={inputValue}
+      value={name}
         type="text"
         name="name"
+        placeholder="Name"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__search_name"
+        className="form-wide__input"
       />
       <input
-      value={inputValue}
+      value={surname}
         type="text"
         name="surname"
+        placeholder="Surname"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__search_surname"
+        className="form-wide__input"
       />
       <input
-      value={inputValue}
-        type="text"
+      value={age}
+        type="number"
         name="age"
+        placeholder="Age"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__search_age"
+        className="form-wide__input"
       />
       <input
-      value={inputValue}
+      value={city}
         type="text"
         name="city"
+        placeholder="City"
+        onFocus={onFocus}
+        onBlur={onBlur}
         onChange={handleChange}
-        className="form__search_city"
+        className="form-wide__input"
       />
-      <button className="form__button_submit"></button>
+      <button type="submit" className="form-wide__button button">add</button>
     </form>
   );
 };
 
-export default SecondForm;
+export default FormWide;

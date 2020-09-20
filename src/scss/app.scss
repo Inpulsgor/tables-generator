@@ -1,12 +1,11 @@
 @import "fonts.scss";
+@import "mixins.scss";
 @import "variables.scss";
 @import "normalize.scss";
 
 @import "./components/all";
 
 body {
-  background-color: #e5e8ed;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -15,12 +14,122 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #000000;
+}
+
+header,
+footer {
+  background: #1e2939;
+}
+
+​img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus,
+input:active,
+button:active,
+button:focus {
+  outline: none;
+}
+
+.main {
+  background-color: $main-background;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: 45px 0;
+
+  @include for-phone-only {
+    padding-top: 10px;
+  }
+
+  &__container {
+    @include for-desktop-up {
+      display: flex;
+      font-display: row;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  height: auto;
+  background-color: $form-background;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+.button {
+  font-size: 14px;
+  font-weight: bold;
+  color: $button-font-color;
+  background-color: $button-background;
+  text-transform: uppercase;
+  border: none;
+}
+
 .container {
-  padding-top: 50px;
-  width: 1235px;
+  width: 280px;
   margin: 0 auto;
+
+  @include for-tablet-up {
+    width: 660px;
+  }
+
+  @include for-desktop-up {
+    width: 1235px;
+  }
 }
