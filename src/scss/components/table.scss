@@ -5,7 +5,7 @@
   margin-bottom: 30px;
 }
 
-// COPY TABLE & DELETE TABLE - BUTTONS 
+// COPY TABLE & DELETE TABLE - BUTTONS
 .control {
   display: flex;
   justify-content: flex-end;
@@ -38,6 +38,18 @@
   border-radius: 13px;
   border: 1px solid #8c9296;
   width: 100%;
+
+  &-wrapper {
+    @include for-desktop-up {
+      margin-right: 100px;
+    }
+  }
+
+  &__button_edit {
+    border: none;
+    background: none;
+    margin-right: 52px;
+  }
 }
 
 .table-container {
@@ -46,16 +58,16 @@
 }
 
 .table td {
+  line-height: 32px;
   border: 1px solid #ddd;
-  padding: 8px;
+}
+
+.table td:last-child {
+  padding-left: 44px;
 }
 
 .table tr:nth-child(even) {
   background-color: #f2f2f2;
-}
-
-.table tr:hover {
-  background-color: #ddd;
 }
 
 .table th {

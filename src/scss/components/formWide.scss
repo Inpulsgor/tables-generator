@@ -1,32 +1,33 @@
 @import "variables";
 
 .form-wide {
-  padding: 5%;
   font-family: $main-font;
-  flex-direction: column;
-  justify-content: space-between;
-  
+
   @include for-phone-only {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5%;
     width: 100%;
     margin-bottom: 20px;
   }
 
   @include for-tablet-up {
+    padding: 18px 17px 23px;
     width: 547px;
-    margin: 0 auto;
-    padding: 18px 17px 25px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+
+  @include for-tablet-only {
+    margin: 0 auto;
     margin-bottom: 30px;
   }
 
   @include for-desktop-up {
     font-size: $main-font-size;
-    padding: 18px 17px 23px;
+    height: 205px;
     line-height: 30px;
-    margin-right: 166px;
-    width: 280px;
   }
 
   &__input {
@@ -35,7 +36,7 @@
     border-radius: $border-radius;
     height: 40px;
     padding-left: 16px;
-    
+
     @include for-phone-only {
       &:not(:last-of-type) {
         margin-bottom: 18px;
@@ -62,5 +63,3 @@
     }
   }
 }
-
-

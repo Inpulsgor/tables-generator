@@ -4,18 +4,21 @@
   font-family: $main-font;
   flex-direction: column;
   justify-content: space-between;
-  
+
   @include for-phone-only {
     padding: 5%;
     width: 100%;
     margin-bottom: 20px;
   }
 
+  @include for-tablet-only {
+    margin: 0 auto;
+  }
+
   @include for-tablet-up {
     width: 280px;
-    margin: 0 auto;
-    margin-bottom: 30px;
     padding: 18px 17px 23px;
+    margin-bottom: 30px;
   }
 
   @include for-desktop-up {
@@ -30,7 +33,7 @@
     border-radius: $border-radius;
     height: 40px;
     padding-left: 16px;
-    
+
     &:not(:last-of-type) {
       margin-bottom: 18px;
     }
@@ -44,5 +47,3 @@
     border-radius: $border-radius;
   }
 }
-
-
