@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { FormSlim, FormWide, Table, Modal } from "./components";
+import { FormSlim, FormWide, Table, TableCopy, Modal } from "./components";
 
 const initialValues = {
   name: "",
@@ -11,18 +11,19 @@ const initialValues = {
 };
 
 const App = () => {
-  const [tableData, setTableData] = useState([]);
   const [inputValues, setInputValues] = useState(initialValues);
-  const [agreed, setAgreement] = useState(false);
-  console.log(tableData);
+  const [tableData, setTableData] = useState([]);
+  const [tableDataCopy, setTableDataCopy] = useState([]);
+  const [checked, setCheckbox] = useState(false);
 
+  // FORM - get input values
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setInputValues((prevState) => ({ ...prevState, [name]: value }));
   };
-
+  // FORM - reset input fields
   const handleReset = () => setInputValues({ ...initialValues });
-
+  // FORM - submit form data
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -38,19 +39,39 @@ const App = () => {
     setTableData([...tableData, contact]);
     handleReset();
   };
-
-  const handleDelete = (id) => {
-    setTableData(tableData.filter((item) => item.id !== id));
-  };
-
-  const toggleAgreement = () => {
-    setAgreement(!agreed);
-  };
-
+  // FORM - hide input placeholder
   const onFocus = ({ target }) => (target.placeholder = "");
+  // FORM - show input placeholder
   const onBlur = ({ target }) =>
     (target.placeholder =
       target.name.charAt(0).toUpperCase() + target.name.slice(1));
+
+  // TABLE - remove table row
+  const handleDeleteRow = (id) => {
+    setTableData(tableData.filter((item) => item.id !== id));
+  };
+  //! TABLE - edit table row
+  const handleEditRow = (id) => {
+    console.log(id);
+  };
+  //! TABLE - copy table
+  const handleCopyTable = (id) => {
+    console.log(id);
+  };
+  //! TABLE - delete table copy
+  const handleDeleteTable = (id) => {
+    console.log(id);
+  };
+
+  // MODAL - toggle checkbox
+  const toggleCheckbox = () => {
+    setCheckbox(!checked);
+  };
+  //! MODAL - save editing changes
+  const handleModalSubmit = (e) => {
+    e.preventDefault();
+    console.log("modal submitted");
+  };
 
   return (
     <main className="main">
@@ -69,12 +90,26 @@ const App = () => {
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <Table tableData={tableData} handleDelete={handleDelete} />
+        <Table
+          tableData={tableData}
+          handleEditRow={handleEditRow}
+          handleDeleteRow={handleDeleteRow}
+          handleCopyTable={handleCopyTable}
+          handleDeleteTable={handleDeleteTable}
+        />
+        {tableDataCopy.length > 0 && (
+          <TableCopy
+            tableDataCopy={tableDataCopy}
+            handleEditRow={handleEditRow}
+            handleDeleteRow={handleDeleteRow}
+          />
+        )}
         <Modal
           onFocus={onFocus}
           onBlur={onBlur}
-          agreement={agreed}
-          toggleAgreement={toggleAgreement}
+          checked={checked}
+          handleModalSubmit={handleModalSubmit}
+          toggleCheckbox={toggleCheckbox}
         />
       </div>
     </main>

@@ -94,6 +94,11 @@
       width: 65.5%;
       height: 40px;
       border-radius: $border-radius;
+
+      &_disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+      }
     }
   }
 }

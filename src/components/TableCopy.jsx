@@ -1,36 +1,8 @@
 import React from "react";
 
-import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
-import { EmptyTable } from "../services/helpers";
-
-const Table = ({
-  tableData,
-  handleEditRow,
-  handleDeleteRow,
-  handleCopyTable,
-  handleDeleteTable,
-}) => {
+const TableCopy = ({ tableDataCopy, handleDeleteRow, handleEditRow }) => {
   return (
     <div className="table-container">
-      {/* COPY & DELETE TABLE */}
-      <div className="control">
-        <button
-          type="button"
-          className="control__button_copy"
-          onClick={handleCopyTable}
-        >
-          Copy table
-        </button>
-        <button
-          type="button"
-          className="control__button_delete"
-          onClick={handleDeleteTable}
-        >
-          <DeleteButton />
-        </button>
-      </div>
-
-      {/* TABLE */}
       <table className="table">
         <tbody className="table__body">
           <tr className="table__heading">
@@ -40,8 +12,8 @@ const Table = ({
             <th>City</th>
             <th></th>
           </tr>
-          {tableData.length > 0 ? (
-            tableData.map((contact) => {
+          {tableDataCopy &&
+            tableDataCopy.map((contact) => {
               return (
                 <tr key={contact.id}>
                   <td>{contact.name}</td>
@@ -66,14 +38,11 @@ const Table = ({
                   </td>
                 </tr>
               );
-            })
-          ) : (
-            <EmptyTable />
-          )}
+            })}
         </tbody>
       </table>
     </div>
   );
 };
 
-export default Table;
+export default TableCopy;

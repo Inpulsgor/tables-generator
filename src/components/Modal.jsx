@@ -1,7 +1,13 @@
 import React from "react";
 import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
-const Modal = ({ onFocus, onBlur, agreement, toggleAgreement }) => {
+const Modal = ({
+  onFocus,
+  onBlur,
+  checked,
+  toggleCheckbox,
+  handleModalSubmit,
+}) => {
   return (
     <div className="modal">
       {/* MODAL HEADING */}
@@ -11,8 +17,9 @@ const Modal = ({ onFocus, onBlur, agreement, toggleAgreement }) => {
           <DeleteButton />
         </button>
       </div>
+
       {/* MODAL FORM INPUTS */}
-      <form className="modal-form">
+      <form className="modal-form" onSubmit={handleModalSubmit}>
         <div className="modal-form__container">
           <input
             name="name"
@@ -39,21 +46,26 @@ const Modal = ({ onFocus, onBlur, agreement, toggleAgreement }) => {
             className="modal-form__input"
           />
         </div>
+
         {/* MODAL FORM CHECKBOX */}
         <div className="modal-form__container">
           <label htmlFor="checkbox" className="modal-form__label">
             <input
               type="checkbox"
               name="agreement"
-              checked={agreement}
-              onChange={toggleAgreement}
+              checked={checked}
+              onChange={toggleCheckbox}
               className="modal-form__checkbox"
             />
             <span className="modal-form__label-text">Totally agree</span>
           </label>
 
           {/* MODAL FORM SUBMIT BUTTON */}
-          <button type="submit" className="modal-form__button button ">
+          <button
+            type="submit"
+            className="modal-form__button button"
+            disabled={!checked ? true : false}
+          >
             SAVE
           </button>
         </div>
