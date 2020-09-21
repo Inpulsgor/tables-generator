@@ -3,11 +3,13 @@
 .modal {
   font-family: $main-font;
   background-color: $form-background;
+  color: $form-font-color;
   box-shadow: $box-shadow;
   border-bottom-right-radius: $border-radius;
   border-bottom-left-radius: $border-radius;
   width: 536px;
 
+  // MODAL HEADING
   &__heading {
     min-height: 37px;
     display: flex;
@@ -33,22 +35,65 @@
     margin-right: 15px;
     border: none;
     fill: $button-font-color;
-    background-color: $modal-header-background;
+    background-color: transparent;
   }
 
+  // MODAL FORM
   &-form {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 20px;
+    margin-bottom: 40px;
+
+    // MODAL FORM INPUTS
+    &__container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &__container:first-child {
+      margin-bottom: 18px;
+    }
 
     &__input {
+      font-size: $main-font-size;
       border: 1px solid $form-input;
       border-radius: $border-radius;
       height: 40px;
       padding-left: 16px;
-      width: 32%;
+      width: 31.5%;
+    }
+
+    // MODAL FORM CHECKBOX
+    &__checkbox {
+      padding-top: 3px;
+      border: 1px solid $form-input;
+      width: 22px;
+      height: 22px;
+      border-radius: $border-radius;
+      margin-right: 13px;
+    }
+
+    &__label {
+      padding-top: 3px;
+      font-size: $main-font-size;
+    }
+
+    &__label-text {
+      position: absolute;
+      top: 9px;
+    }
+
+    // MODAL FORM SUBMIT BUTTON
+    &__button {
+      width: 65.5%;
+      height: 40px;
+      border-radius: $border-radius;
     }
   }
 }

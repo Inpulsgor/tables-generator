@@ -1,16 +1,23 @@
 @import "variables";
 
-.table-wrapper {
+.table-container {
   font-family: $main-font;
   margin-bottom: 30px;
+  width: 595px;
+  // margin: 0 auto;
+
+  @include for-desktop-up {
+    margin-right: 100px;
+  }
 }
 
-// COPY TABLE & DELETE TABLE - BUTTONS
+// BUTTONS - COPY TABLE & DELETE TABLE
 .control {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
 
+  // COPY TABLE - BUTTON
   &__button_copy {
     font-size: $main-font-size;
     line-height: 24px;
@@ -24,37 +31,47 @@
     border-radius: $border-radius;
   }
 
+  // DELETE TABLE - BUTTON
   &__button_delete {
     border: none;
-    background-color: $main-background;
+    background-color: transparent;
     margin-right: 12px;
     fill: #f04e34;
   }
 }
 
-// TABLE STYLES
+// TABLE
 .table {
+  font-size: $main-font-size;
   border-collapse: collapse;
   border-radius: 13px;
   border: 1px solid #8c9296;
   width: 100%;
+  overflow-x: auto;
 
-  &-wrapper {
-    @include for-desktop-up {
-      margin-right: 100px;
-    }
+  // EDIT ROW & DELETE ROW
+  &__button_edit,
+  &__button_delete {
+    text-decoration: underline;
+    text-transform: capitalize;
+    border: none;
   }
 
+  &__button_edit:hover,
+  &__button_delete:hover {
+    color: $hover-edit-delete;
+  }
+
+  // EDIT ROW - BUTTON
   &__button_edit {
-    border: none;
-    background: none;
     margin-right: 52px;
   }
 }
 
-.table-container {
-  width: 595px;
-  margin: 0 auto;
+th,
+td {
+  padding-left: 14px;
+  text-align: left;
 }
 
 .table td {
