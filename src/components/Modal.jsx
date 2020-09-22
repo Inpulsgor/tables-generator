@@ -5,9 +5,11 @@ const Modal = ({
   onFocus,
   onBlur,
   checked,
+  editedValues: { modalName, modalSurname, modalCity },
   toggleCheckbox,
   handleModalSubmit,
   handleCloseModal,
+  handleChange,
 }) => {
   return (
     <div className="overlay">
@@ -29,29 +31,35 @@ const Modal = ({
           <div className="modal-form__container">
             <input
               required
-              name="name"
+              name="modalName"
+              value={modalName}
               type="text"
               placeholder="Name"
               onFocus={onFocus}
               onBlur={onBlur}
+              onChange={handleChange}
               className="modal-form__input"
             />
             <input
               required
-              name="surname"
+              name="modalSurname"
+              value={modalSurname}
               type="text"
               placeholder="Surname"
               onFocus={onFocus}
               onBlur={onBlur}
+              onChange={handleChange}
               className="modal-form__input"
             />
             <input
               required
-              name="city"
+              name="modalCity"
+              value={modalCity}
               type="text"
               placeholder="City"
               onFocus={onFocus}
               onBlur={onBlur}
+              onChange={handleChange}
               className="modal-form__input"
             />
           </div>

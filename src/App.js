@@ -10,13 +10,21 @@ const initialValues = {
   city: "",
 };
 
+const editedData = {
+  modalName: "",
+  modalSurname: "",
+  modalCity: "",
+};
+
 const App = () => {
   // < ----- useState ----- >
   const [inputValues, setInputValues] = useState(initialValues);
+  const [editedValues, setEditedValues] = useState(editedData);
   const [tableData, setTableData] = useState([]);
   const [tableDataCopy, setTableDataCopy] = useState([]);
   const [checked, setCheckbox] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [itemID, setItemID] = useState(null);
 
   // < ----- useCallback ----- >
   // close modal on press Escape
@@ -43,6 +51,10 @@ const App = () => {
   // get input values
   const handleChange = ({ target }) => {
     const { name, value } = target;
+    if (name.includes("modal")) {
+      setEditedValues((prevState) => ({ ...prevState, [name]: value }));
+      return;
+    }
     setInputValues((prevState) => ({ ...prevState, [name]: value }));
   };
   // reset input fields
@@ -76,10 +88,10 @@ const App = () => {
     setTableData(tableData.filter((item) => item.id !== id));
     setTableDataCopy(tableDataCopy.filter((item) => item.id !== id));
   };
-  //! edit table row (open modal)
+  // edit table row (open modal)
   const handleEditRow = (id) => {
     setShowModal(!showModal);
-    console.log(id);
+    setItemID(id);
   };
   //! copy table
   const handleCopyTable = () => {
@@ -119,7 +131,22 @@ const App = () => {
   //! save editing changes
   const handleModalSubmit = (e) => {
     e.preventDefault();
-    console.log("modal submitted");
+    const { modalName, modalSurname, modalCity } = editedValues;
+
+    const update = tableDataCopy.reduce((acc, item) => {
+      if (item.id === itemID) {
+        return acc.concat({
+          id: item.id,
+          name: modalName,
+          surname: modalSurname,
+          city: modalCity,
+          age: item.age,
+        });
+      }
+    }, []);
+
+    setTableDataCopy(update);
+    // const find = tableDataCopy.find((item) => item.id === itemID);
     setCheckbox(false);
     handleCloseModal();
   };
@@ -171,12 +198,14 @@ const App = () => {
         {/* Modal form */}
         {showModal && (
           <Modal
+            editedValues={editedValues}
             onFocus={onFocus}
             onBlur={onBlur}
             checked={checked}
             handleModalSubmit={handleModalSubmit}
             toggleCheckbox={toggleCheckbox}
             handleCloseModal={handleCloseModal}
+            handleChange={handleChange}
           />
         )}
       </div>
