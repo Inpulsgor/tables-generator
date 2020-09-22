@@ -82,10 +82,15 @@ const App = () => {
       target.name.charAt(0).toUpperCase() + target.name.slice(1));
 
   //  < ----- TABLE ----- >
-  // remove table row
+  // delete row(original table) 
   const handleDeleteRow = (id) => {
     setTableData(tableData.filter((item) => item.id !== id));
-    setTableDataCopy(tableDataCopy.filter((item) => item.id !== id));
+  };
+  // delete row(copied table) 
+  const handleDeleteRowCopy = (id) => {
+    setTableDataCopy(tableDataCopy.map((item) => {
+      return item.filter(itm => itm.id !== id)
+    }));
   };
   // edit table row (open modal)
   const handleEditRow = (id) => {
@@ -139,11 +144,9 @@ const App = () => {
       return item;
     });
 
-    console.log(tableDataCopy);
-    console.log("update", update);
-
+    // console.log(tableDataCopy);
+    // console.log("update", update);
     setTableDataCopy(update);
-    // const find = tableDataCopy.find((item) => item.id === itemID);
     setCheckbox(false);
     handleCloseModal();
   };
@@ -178,14 +181,13 @@ const App = () => {
         {/* Table Copy */}
         <ul className="table-copy__list">
           {tableDataCopy.length > 0 && tableDataCopy.map((copy, idx) => {
-            console.log(copy)
             return (
               <TableCopy
                 key={idx}
                 copy={copy}
                 tableDataCopy={tableDataCopy}
                 handleEditRow={handleEditRow}
-                handleDeleteRow={handleDeleteRow}
+                handleDeleteRowCopy={handleDeleteRowCopy}
                 handleDeleteTable={handleDeleteTable}
               />
             )

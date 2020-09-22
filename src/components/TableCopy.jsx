@@ -3,10 +3,9 @@ import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const TableCopy = ({
   copy,
-  handleDeleteRow,
+  handleDeleteRowCopy,
   handleDeleteTable,
   handleEditRow,
-  contact,
 }) => {
   return (
     <li className="table-copy__list-item">
@@ -50,7 +49,7 @@ const TableCopy = ({
                       <button
                         type="button"
                         className="table__button_delete"
-                        onClick={() => handleDeleteRow(contact.id)}
+                        onClick={() => handleDeleteRowCopy(contact.id)}
                       >
                         Delete
                       </button>
