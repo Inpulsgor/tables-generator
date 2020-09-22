@@ -22,15 +22,24 @@ const App = () => {
   const [editedValues, setEditedValues] = useState(editedData);
   const [tableData, setTableData] = useState([]);
   const [tableDataCopy, setTableDataCopy] = useState([]);
+  const [tableDataModified, setTableDataModified] = useState([]);
   const [checked, setCheckbox] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [itemID, setItemID] = useState(null);
 
   // < ----- useCallback ----- >
-  // close modal on press Escape
-  const handleCloseModalOnEscape = useCallback((e) => {
-    e.keyCode === 27 && handleCloseModal();
+  // close modal
+  const handleCloseModal = useCallback((e) => {
+    handleResetModal();
+    setShowModal(false);
   }, []);
+  // close modal on press Escape
+  const handleCloseModalOnEscape = useCallback(
+    (e) => {
+      e.keyCode === 27 && handleCloseModal();
+    },
+    [handleCloseModal]
+  );
   // close modal on overlay click
   const handleOverlayClick = useCallback(({ target }) => {
     if (target.classList.contains("overlay")) setShowModal(false);
@@ -59,6 +68,7 @@ const App = () => {
   };
   // reset input fields
   const handleReset = () => setInputValues({ ...initialValues });
+  const handleResetModal = () => setEditedValues({ ...editedData });
   // submit form data
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -124,28 +134,29 @@ const App = () => {
   const toggleCheckbox = () => {
     setCheckbox(!checked);
   };
-  // close modal
-  const handleCloseModal = (e) => {
-    setShowModal(false);
-  };
+
   //! save editing changes
   const handleModalSubmit = (e) => {
     e.preventDefault();
-    const { modalName, modalSurname, modalCity } = editedValues;
+    // const { modalName, modalSurname, modalCity } = editedValues;
+    setTableDataModified(editedValues);
+    console.log(tableDataModified);
 
-    const update = tableDataCopy.reduce((acc, item) => {
-      if (item.id === itemID) {
-        return acc.concat({
-          id: item.id,
-          name: modalName,
-          surname: modalSurname,
-          city: modalCity,
-          age: item.age,
-        });
-      }
-    }, []);
+    // const update = tableData.map((item) => {
+    //   if (item.id === itemID) {
+    //     return {
+    //       id: item.id,
+    //       name: modalName,
+    //       surname: modalSurname,
+    //       city: modalCity,
+    //       age: item.age,
+    //     };
+    //   }
+    //   return item;
+    // });
+    // console.log(update);
 
-    setTableDataCopy(update);
+    // setTableDataCopy(...tableDataCopy, ...update);
     // const find = tableDataCopy.find((item) => item.id === itemID);
     setCheckbox(false);
     handleCloseModal();
