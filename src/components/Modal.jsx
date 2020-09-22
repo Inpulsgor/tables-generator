@@ -28,6 +28,7 @@ const Modal = ({
         <form className="modal-form" onSubmit={handleModalSubmit}>
           <div className="modal-form__container">
             <input
+              required
               name="name"
               type="text"
               placeholder="Name"
@@ -36,6 +37,7 @@ const Modal = ({
               className="modal-form__input"
             />
             <input
+              required
               name="surname"
               type="text"
               placeholder="Surname"
@@ -44,6 +46,7 @@ const Modal = ({
               className="modal-form__input"
             />
             <input
+              required
               name="city"
               type="text"
               placeholder="City"

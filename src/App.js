@@ -11,14 +11,14 @@ const initialValues = {
 };
 
 const App = () => {
-  //! --- useState
+  // < ----- useState ----- >
   const [inputValues, setInputValues] = useState(initialValues);
   const [tableData, setTableData] = useState([]);
   const [tableDataCopy, setTableDataCopy] = useState([]);
   const [checked, setCheckbox] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  //! --- useCallback
+  // < ----- useCallback ----- >
   // close modal on press Escape
   const handleCloseModalOnEscape = useCallback((e) => {
     e.keyCode === 27 && handleCloseModal();
@@ -28,7 +28,7 @@ const App = () => {
     if (target.classList.contains("overlay")) setShowModal(false);
   }, []);
 
-  //! --- useEffect
+  // < ----- useEffect ----- >
   useEffect(() => {
     document.addEventListener("keydown", handleCloseModalOnEscape, false);
     document.addEventListener("mousedown", handleOverlayClick, false);
@@ -39,7 +39,7 @@ const App = () => {
     };
   }, [handleCloseModalOnEscape, handleOverlayClick]);
 
-  //! < ----- FORM ----- >
+  // < ----- FORM ----- >
   // get input values
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -70,10 +70,11 @@ const App = () => {
     (target.placeholder =
       target.name.charAt(0).toUpperCase() + target.name.slice(1));
 
-  //! < ----- TABLE ----- >
+  // < ----- TABLE ----- >
   // remove table row
   const handleDeleteRow = (id) => {
     setTableData(tableData.filter((item) => item.id !== id));
+    setTableDataCopy(tableDataCopy.filter((item) => item.id !== id));
   };
   //! edit table row (open modal)
   const handleEditRow = (id) => {
@@ -82,15 +83,31 @@ const App = () => {
   };
   //! copy table
   const handleCopyTable = () => {
-    const item = [...tableData];
-    setTableDataCopy(item);
+    let setNewID;
+    if (tableData.length > 0) {
+      setNewID = tableData.map((contact) => {
+        const { name, surname, age, city } = contact;
+        return {
+          id: uuidv4(),
+          name,
+          surname,
+          age,
+          city,
+        };
+      });
+    }
+
+    setTableDataCopy(setNewID);
+    // const item = [...tableData];
+    // console.log(item);
+    // setTableDataCopy(item);
   };
   //! delete table copy
   const handleDeleteTable = (id) => {
-    // console.log(id);
+    console.log(id);
   };
 
-  //! < ----- MODAL ----- >
+  // < ----- MODAL ----- >
   // toggle checkbox
   const toggleCheckbox = () => {
     setCheckbox(!checked);
@@ -110,6 +127,7 @@ const App = () => {
   return (
     <main className="main">
       <div className="main__container container">
+        {/* Form 1 */}
         <FormSlim
           inputValues={inputValues}
           handleChange={handleChange}
@@ -117,6 +135,7 @@ const App = () => {
           onFocus={onFocus}
           onBlur={onBlur}
         />
+        {/* Form 2 */}
         <FormWide
           inputValues={inputValues}
           handleChange={handleChange}
@@ -124,6 +143,7 @@ const App = () => {
           onFocus={onFocus}
           onBlur={onBlur}
         />
+        {/* Table */}
         <Table
           tableData={tableData}
           handleEditRow={handleEditRow}
@@ -131,15 +151,24 @@ const App = () => {
           handleCopyTable={handleCopyTable}
           handleDeleteTable={handleDeleteTable}
         />
-        <div className="child">
-          {tableDataCopy.length > 0 && (
-            <TableCopy
-              tableDataCopy={tableDataCopy}
-              handleEditRow={handleEditRow}
-              handleDeleteRow={handleDeleteRow}
-            />
-          )}
-        </div>
+        {/* Table Copy */}
+        <ul className="table-copy__list">
+          {tableDataCopy.length > 0 &&
+            tableDataCopy.map((contact) => {
+              return (
+                <TableCopy
+                  key={contact.id}
+                  id={contact.id}
+                  contact={contact}
+                  tableDataCopy={tableDataCopy}
+                  handleEditRow={handleEditRow}
+                  handleDeleteRow={handleDeleteRow}
+                  handleDeleteTable={handleDeleteTable}
+                />
+              );
+            })}
+        </ul>
+        {/* Modal form */}
         {showModal && (
           <Modal
             onFocus={onFocus}
