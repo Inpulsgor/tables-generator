@@ -2,10 +2,13 @@
 
 .table-container {
   font-family: $main-font;
-  margin-bottom: 30px;
-  width: 595px;
+  width: 48%;
   margin: 0 auto;
   margin-bottom: 30px;
+}
+
+.table-copy-list {
+  width: 100%;
 }
 
 // BUTTONS - COPY TABLE & DELETE TABLE
@@ -39,16 +42,17 @@
 
 // TABLE
 .table {
+  border: none;
   font-size: $main-font-size;
   border-collapse: collapse;
   border-radius: 13px;
   border: 1px solid #8c9296;
   width: 100%;
-  overflow-x: auto;
 
   // EDIT ROW & DELETE ROW
   &__button_edit,
   &__button_delete {
+    background-color: transparent;
     text-decoration: underline;
     text-transform: capitalize;
     border: none;
@@ -67,28 +71,45 @@
 
 th,
 td {
+  display: table-cell;
   padding-left: 14px;
   text-align: left;
-}
-
-.table td {
   line-height: 32px;
   border: 1px solid #ddd;
+  background-color: #fff;
 }
 
-.table td:last-child {
+td:last-child {
   padding-left: 44px;
 }
 
-.table tr:nth-child(even) {
+tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-.table th {
+thead {
+  border: none;
+
+  border-radius: 15px;
+}
+
+th {
+  border: none;
   font-size: 14px;
   font-weight: 300;
   line-height: 30px;
-  border: none;
   background-color: $table-header-background;
   color: white;
+}
+
+th:first-child {
+  border-top-left-radius: 15px;
+}
+
+th:last-child {
+  border-top-right-radius: 15px;
+}
+
+tr {
+  border: none;
 }

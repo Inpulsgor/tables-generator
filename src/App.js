@@ -2,32 +2,21 @@ import React, { useState, useEffect, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { FormSlim, FormWide, Table, TableCopy, Modal } from "./components";
-
-const initialValues = {
-  name: "",
-  surname: "",
-  age: "",
-  city: "",
-};
-
-const editedData = {
-  modalName: "",
-  modalSurname: "",
-  modalCity: "",
-};
+import { initialValues, editedData } from "./services/helpers";
 
 const App = () => {
-  // < ----- useState ----- >
+  //!  < ---------- useState ---------- >
   const [inputValues, setInputValues] = useState(initialValues);
   const [editedValues, setEditedValues] = useState(editedData);
+
   const [tableData, setTableData] = useState([]);
   const [tableDataCopy, setTableDataCopy] = useState([]);
-  const [tableDataModified, setTableDataModified] = useState([]);
+
   const [checked, setCheckbox] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [itemID, setItemID] = useState(null);
+  const [rowElementID, setRowElementID] = useState(null);
 
-  // < ----- useCallback ----- >
+  //!  < ---------- useCallback ---------- >
   // close modal
   const handleCloseModal = useCallback((e) => {
     handleResetModal();
@@ -45,7 +34,7 @@ const App = () => {
     if (target.classList.contains("overlay")) setShowModal(false);
   }, []);
 
-  // < ----- useEffect ----- >
+  //!  < ---------- useEffect ---------- >
   useEffect(() => {
     document.addEventListener("keydown", handleCloseModalOnEscape, false);
     document.addEventListener("mousedown", handleOverlayClick, false);
@@ -56,7 +45,7 @@ const App = () => {
     };
   }, [handleCloseModalOnEscape, handleOverlayClick]);
 
-  // < ----- FORM ----- >
+  //!  < ----- FORM ----- >
   // get input values
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -92,7 +81,7 @@ const App = () => {
     (target.placeholder =
       target.name.charAt(0).toUpperCase() + target.name.slice(1));
 
-  // < ----- TABLE ----- >
+  //!  < ----- TABLE ----- >
   // remove table row
   const handleDeleteRow = (id) => {
     setTableData(tableData.filter((item) => item.id !== id));
@@ -101,7 +90,7 @@ const App = () => {
   // edit table row (open modal)
   const handleEditRow = (id) => {
     setShowModal(!showModal);
-    setItemID(id);
+    setRowElementID(id);
   };
   //! copy table
   const handleCopyTable = () => {
@@ -129,7 +118,7 @@ const App = () => {
     console.log(id);
   };
 
-  // < ----- MODAL ----- >
+  //!  < ----- MODAL ----- >
   // toggle checkbox
   const toggleCheckbox = () => {
     setCheckbox(!checked);
@@ -138,25 +127,25 @@ const App = () => {
   //! save editing changes
   const handleModalSubmit = (e) => {
     e.preventDefault();
-    // const { modalName, modalSurname, modalCity } = editedValues;
-    setTableDataModified(editedValues);
-    console.log(tableDataModified);
+    const { modalName, modalSurname, modalCity } = editedValues;
 
-    // const update = tableData.map((item) => {
-    //   if (item.id === itemID) {
-    //     return {
-    //       id: item.id,
-    //       name: modalName,
-    //       surname: modalSurname,
-    //       city: modalCity,
-    //       age: item.age,
-    //     };
-    //   }
-    //   return item;
-    // });
-    // console.log(update);
+    const update = tableDataCopy.map((item) => {
+      if (item.id === rowElementID) {
+        return {
+          id: item.id,
+          name: modalName,
+          surname: modalSurname,
+          city: modalCity,
+          age: item.age,
+        };
+      }
+      return item;
+    });
 
-    // setTableDataCopy(...tableDataCopy, ...update);
+    console.log(tableDataCopy);
+    console.log("update", update);
+
+    setTableDataCopy(update);
     // const find = tableDataCopy.find((item) => item.id === itemID);
     setCheckbox(false);
     handleCloseModal();
@@ -191,20 +180,14 @@ const App = () => {
         />
         {/* Table Copy */}
         <ul className="table-copy__list">
-          {tableDataCopy.length > 0 &&
-            tableDataCopy.map((contact) => {
-              return (
-                <TableCopy
-                  key={contact.id}
-                  id={contact.id}
-                  contact={contact}
-                  tableDataCopy={tableDataCopy}
-                  handleEditRow={handleEditRow}
-                  handleDeleteRow={handleDeleteRow}
-                  handleDeleteTable={handleDeleteTable}
-                />
-              );
-            })}
+          {tableDataCopy.length > 0 && (
+            <TableCopy
+              tableDataCopy={tableDataCopy}
+              handleEditRow={handleEditRow}
+              handleDeleteRow={handleDeleteRow}
+              handleDeleteTable={handleDeleteTable}
+            />
+          )}
         </ul>
         {/* Modal form */}
         {showModal && (

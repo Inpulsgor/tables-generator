@@ -31,14 +31,16 @@ const Table = ({
 
       {/* TABLE */}
       <table className="table">
-        <tbody className="table__body">
-          <tr className="table__heading">
+        <thead className="table__heading">
+          <tr>
             <th>Name</th>
             <th>Surname</th>
             <th>Age</th>
             <th>City</th>
             <th></th>
           </tr>
+        </thead>
+        <tbody className="table__body">
           {tableData.length > 0 &&
             tableData.map((contact) => {
               return (

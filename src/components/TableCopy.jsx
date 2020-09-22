@@ -2,12 +2,12 @@ import React from "react";
 import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const TableCopy = ({
+  tableDataCopy,
   handleDeleteRow,
   handleDeleteTable,
   handleEditRow,
   contact,
 }) => {
-  const { name, surname, age, city } = contact;
   return (
     <li className="table-copy__list-item">
       <div className="table-container">
@@ -29,28 +29,34 @@ const TableCopy = ({
               <th>City</th>
               <th></th>
             </tr>
-            <tr>
-              <td>{name}</td>
-              <td>{surname}</td>
-              <td>{age}</td>
-              <td>{city}</td>
-              <td>
-                <button
-                  type="button"
-                  className="table__button_edit"
-                  onClick={() => handleEditRow(contact.id)}
-                >
-                  edit
-                </button>
-                <button
-                  type="button"
-                  className="table__button_delete"
-                  onClick={() => handleDeleteRow(contact.id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
+            {tableDataCopy &&
+              tableDataCopy.map((contact) => {
+                console.log(contact);
+                return (
+                  <tr key={contact.id}>
+                    <td>{contact.name}</td>
+                    <td>{contact.surname}</td>
+                    <td>{contact.age}</td>
+                    <td>{contact.city}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="table__button_edit"
+                        onClick={() => handleEditRow(contact.id)}
+                      >
+                        edit
+                      </button>
+                      <button
+                        type="button"
+                        className="table__button_delete"
+                        onClick={() => handleDeleteRow(contact.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
