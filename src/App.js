@@ -15,6 +15,7 @@ const App = () => {
   const [tableData, setTableData] = useState([]);
   const [tableDataCopy, setTableDataCopy] = useState([]);
   const [checked, setCheckbox] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // FORM - get input values
   const handleChange = ({ target }) => {
@@ -50,13 +51,15 @@ const App = () => {
   const handleDeleteRow = (id) => {
     setTableData(tableData.filter((item) => item.id !== id));
   };
-  //! TABLE - edit table row
+  //! TABLE - edit table row (open modal)
   const handleEditRow = (id) => {
+    setShowModal(!showModal)
     console.log(id);
   };
   //! TABLE - copy table
-  const handleCopyTable = (id) => {
-    console.log(id);
+  const handleCopyTable = () => {
+    const item = [...tableData]
+    setTableDataCopy(item)
   };
   //! TABLE - delete table copy
   const handleDeleteTable = (id) => {
@@ -72,6 +75,8 @@ const App = () => {
     e.preventDefault();
     console.log("modal submitted");
   };
+  //! MODAL - class name switch
+  // const handleSwitchClassName = showModal ? "modal modal__active" : "modal__hidden";
 
   return (
     <main className="main">
@@ -97,6 +102,7 @@ const App = () => {
           handleCopyTable={handleCopyTable}
           handleDeleteTable={handleDeleteTable}
         />
+        <div className="child">
         {tableDataCopy.length > 0 && (
           <TableCopy
             tableDataCopy={tableDataCopy}
@@ -104,13 +110,14 @@ const App = () => {
             handleDeleteRow={handleDeleteRow}
           />
         )}
-        <Modal
+        </div>
+        {showModal && <Modal
           onFocus={onFocus}
           onBlur={onBlur}
           checked={checked}
           handleModalSubmit={handleModalSubmit}
           toggleCheckbox={toggleCheckbox}
-        />
+        />}
       </div>
     </main>
   );

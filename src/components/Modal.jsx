@@ -9,6 +9,7 @@ const Modal = ({
   handleModalSubmit,
 }) => {
   return (
+    <div className="overlay">
     <div className="modal">
       {/* MODAL HEADING */}
       <div className="modal__heading">
@@ -70,6 +71,7 @@ const Modal = ({
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };
