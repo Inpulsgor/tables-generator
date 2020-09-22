@@ -116,8 +116,8 @@ const App = () => {
     setTableDataCopy(prev => [...prev, setNewID]);
   };
   //! delete table copy
-  const handleDeleteTable = (id) => {
-    console.log(id);
+  const handleDeleteTable = (e) => {
+    console.log(e.target);
   };
 
   //  < ----- MODAL ----- >
@@ -171,16 +171,17 @@ const App = () => {
           onBlur={onBlur}
         />
         {/* Table */}
-        <Table
-          tableData={tableData}
-          handleEditRow={handleEditRow}
-          handleDeleteRow={handleDeleteRow}
-          handleCopyTable={handleCopyTable}
-          handleDeleteTable={handleDeleteTable}
-        />
+      <Table
+        tableData={tableData}
+        handleEditRow={handleEditRow}
+        handleDeleteRow={handleDeleteRow}
+        handleCopyTable={handleCopyTable}
+        handleDeleteTable={handleDeleteTable}
+      />
         {/* Table Copy */}
         <ul className="table-copy__list">
           {tableDataCopy.length > 0 && tableDataCopy.map((copy, idx) => {
+            console.log(copy)
             return (
               <TableCopy
                 key={idx}
