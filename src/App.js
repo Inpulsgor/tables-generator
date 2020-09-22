@@ -92,9 +92,9 @@ const App = () => {
     setShowModal(!showModal);
     setRowElementID(id);
   };
-  //! copy table
+  // copy table & state
   const handleCopyTable = () => {
-    let setNewID;
+    let setNewID = [];
     if (tableData.length > 0) {
       setNewID = tableData.map((contact) => {
         const { name, surname, age, city } = contact;
@@ -108,10 +108,7 @@ const App = () => {
       });
     }
 
-    setTableDataCopy(setNewID);
-    // const item = [...tableData];
-    // console.log(item);
-    // setTableDataCopy(item);
+    setTableDataCopy(prev => [...prev, setNewID]);
   };
   //! delete table copy
   const handleDeleteTable = (id) => {
@@ -180,14 +177,21 @@ const App = () => {
         />
         {/* Table Copy */}
         <ul className="table-copy__list">
-          {tableDataCopy.length > 0 && (
-            <TableCopy
-              tableDataCopy={tableDataCopy}
-              handleEditRow={handleEditRow}
-              handleDeleteRow={handleDeleteRow}
-              handleDeleteTable={handleDeleteTable}
-            />
-          )}
+          {tableDataCopy.length > 0 && tableDataCopy.map((copy, idx) => {
+            console.log(copy)
+            return (
+              <TableCopy
+                key={idx}
+                copy={copy}
+                tableDataCopy={tableDataCopy}
+                handleEditRow={handleEditRow}
+                handleDeleteRow={handleDeleteRow}
+                handleDeleteTable={handleDeleteTable}
+              />
+            )
+          })
+            
+          }
         </ul>
         {/* Modal form */}
         {showModal && (

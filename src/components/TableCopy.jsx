@@ -2,7 +2,7 @@ import React from "react";
 import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const TableCopy = ({
-  tableDataCopy,
+  copy,
   handleDeleteRow,
   handleDeleteTable,
   handleEditRow,
@@ -31,8 +31,8 @@ const TableCopy = ({
             </tr>
           </thead>
           <tbody className="table__body">
-            {tableDataCopy &&
-              tableDataCopy.map((contact) => {
+            {copy &&
+              copy.map((contact) => {
                 return (
                   <tr key={contact.id}>
                     <td>{contact.name}</td>
