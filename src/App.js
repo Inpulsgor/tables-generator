@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { FormSlim, FormWide, Table, TableCopy, Modal } from "./components";
@@ -11,20 +11,43 @@ const initialValues = {
 };
 
 const App = () => {
+  //! --- useState
   const [inputValues, setInputValues] = useState(initialValues);
   const [tableData, setTableData] = useState([]);
   const [tableDataCopy, setTableDataCopy] = useState([]);
   const [checked, setCheckbox] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // FORM - get input values
+  //! --- useCallback
+  // close modal on press Escape
+  const handleCloseModalOnEscape = useCallback((e) => {
+    e.keyCode === 27 && handleCloseModal();
+  }, []);
+  // close modal on overlay click
+  const handleOverlayClick = useCallback(({ target }) => {
+    if (target.classList.contains("overlay")) setShowModal(false);
+  }, []);
+
+  //! --- useEffect
+  useEffect(() => {
+    document.addEventListener("keydown", handleCloseModalOnEscape, false);
+    document.addEventListener("mousedown", handleOverlayClick, false);
+
+    return () => {
+      document.removeEventListener("keydown", handleCloseModalOnEscape, false);
+      document.removeEventListener("mousedown", handleOverlayClick, false);
+    };
+  }, [handleCloseModalOnEscape, handleOverlayClick]);
+
+  //! < ----- FORM ----- >
+  // get input values
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setInputValues((prevState) => ({ ...prevState, [name]: value }));
   };
-  // FORM - reset input fields
+  // reset input fields
   const handleReset = () => setInputValues({ ...initialValues });
-  // FORM - submit form data
+  // submit form data
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -40,43 +63,49 @@ const App = () => {
     setTableData([...tableData, contact]);
     handleReset();
   };
-  // FORM - hide input placeholder
+  // hide input placeholder
   const onFocus = ({ target }) => (target.placeholder = "");
-  // FORM - show input placeholder
+  // show input placeholder
   const onBlur = ({ target }) =>
     (target.placeholder =
       target.name.charAt(0).toUpperCase() + target.name.slice(1));
 
-  // TABLE - remove table row
+  //! < ----- TABLE ----- >
+  // remove table row
   const handleDeleteRow = (id) => {
     setTableData(tableData.filter((item) => item.id !== id));
   };
-  //! TABLE - edit table row (open modal)
+  //! edit table row (open modal)
   const handleEditRow = (id) => {
-    setShowModal(!showModal)
+    setShowModal(!showModal);
     console.log(id);
   };
-  //! TABLE - copy table
+  //! copy table
   const handleCopyTable = () => {
-    const item = [...tableData]
-    setTableDataCopy(item)
+    const item = [...tableData];
+    setTableDataCopy(item);
   };
-  //! TABLE - delete table copy
+  //! delete table copy
   const handleDeleteTable = (id) => {
-    console.log(id);
+    // console.log(id);
   };
 
-  // MODAL - toggle checkbox
+  //! < ----- MODAL ----- >
+  // toggle checkbox
   const toggleCheckbox = () => {
     setCheckbox(!checked);
   };
-  //! MODAL - save editing changes
+  // close modal
+  const handleCloseModal = (e) => {
+    setShowModal(false);
+  };
+  //! save editing changes
   const handleModalSubmit = (e) => {
     e.preventDefault();
     console.log("modal submitted");
+    setCheckbox(false);
+    handleCloseModal();
   };
-  //! MODAL - class name switch
-  // const handleSwitchClassName = showModal ? "modal modal__active" : "modal__hidden";
 
   return (
     <main className="main">
@@ -103,21 +132,24 @@ const App = () => {
           handleDeleteTable={handleDeleteTable}
         />
         <div className="child">
-        {tableDataCopy.length > 0 && (
-          <TableCopy
-            tableDataCopy={tableDataCopy}
-            handleEditRow={handleEditRow}
-            handleDeleteRow={handleDeleteRow}
+          {tableDataCopy.length > 0 && (
+            <TableCopy
+              tableDataCopy={tableDataCopy}
+              handleEditRow={handleEditRow}
+              handleDeleteRow={handleDeleteRow}
+            />
+          )}
+        </div>
+        {showModal && (
+          <Modal
+            onFocus={onFocus}
+            onBlur={onBlur}
+            checked={checked}
+            handleModalSubmit={handleModalSubmit}
+            toggleCheckbox={toggleCheckbox}
+            handleCloseModal={handleCloseModal}
           />
         )}
-        </div>
-        {showModal && <Modal
-          onFocus={onFocus}
-          onBlur={onBlur}
-          checked={checked}
-          handleModalSubmit={handleModalSubmit}
-          toggleCheckbox={toggleCheckbox}
-        />}
       </div>
     </main>
   );

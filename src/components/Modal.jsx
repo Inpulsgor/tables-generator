@@ -7,71 +7,76 @@ const Modal = ({
   checked,
   toggleCheckbox,
   handleModalSubmit,
+  handleCloseModal,
 }) => {
   return (
     <div className="overlay">
-    <div className="modal">
-      {/* MODAL HEADING */}
-      <div className="modal__heading">
-        <p className="modal__description">Edit name</p>
-        <button className="modal__button_close">
-          <DeleteButton />
-        </button>
-      </div>
-
-      {/* MODAL FORM INPUTS */}
-      <form className="modal-form" onSubmit={handleModalSubmit}>
-        <div className="modal-form__container">
-          <input
-            name="name"
-            type="text"
-            placeholder="Name"
-            onFocus={onFocus}
-            onBlur={onBlur}
-            className="modal-form__input"
-          />
-          <input
-            name="surname"
-            type="text"
-            placeholder="Surname"
-            onFocus={onFocus}
-            onBlur={onBlur}
-            className="modal-form__input"
-          />
-          <input
-            name="city"
-            type="text"
-            placeholder="City"
-            onFocus={onFocus}
-            onBlur={onBlur}
-            className="modal-form__input"
-          />
-        </div>
-
-        {/* MODAL FORM CHECKBOX */}
-        <div className="modal-form__container">
-          <label htmlFor="checkbox" className="modal-form__label">
-            <input
-              type="checkbox"
-              name="agreement"
-              checked={checked}
-              onChange={toggleCheckbox}
-              className="modal-form__checkbox"
-            />
-            <span className="modal-form__label-text">Totally agree</span>
-          </label>
-
-          {/* MODAL FORM SUBMIT BUTTON */}
+      <div className="modal">
+        {/* MODAL HEADING */}
+        <div className="modal__heading">
+          <p className="modal__description">Edit name</p>
           <button
-            type="submit"
-            className="modal-form__button button"
-            disabled={!checked ? true : false}
+            type="button"
+            className="modal__button_close"
+            onClick={handleCloseModal}
           >
-            SAVE
+            <DeleteButton />
           </button>
         </div>
-      </form>
-    </div>
+
+        {/* MODAL FORM INPUTS */}
+        <form className="modal-form" onSubmit={handleModalSubmit}>
+          <div className="modal-form__container">
+            <input
+              name="name"
+              type="text"
+              placeholder="Name"
+              onFocus={onFocus}
+              onBlur={onBlur}
+              className="modal-form__input"
+            />
+            <input
+              name="surname"
+              type="text"
+              placeholder="Surname"
+              onFocus={onFocus}
+              onBlur={onBlur}
+              className="modal-form__input"
+            />
+            <input
+              name="city"
+              type="text"
+              placeholder="City"
+              onFocus={onFocus}
+              onBlur={onBlur}
+              className="modal-form__input"
+            />
+          </div>
+
+          {/* MODAL FORM CHECKBOX */}
+          <div className="modal-form__container">
+            <label htmlFor="checkbox" className="modal-form__label">
+              <input
+                type="checkbox"
+                name="agreement"
+                checked={checked}
+                onChange={toggleCheckbox}
+                className="modal-form__checkbox"
+              />
+              <span className="modal-form__label-text">Totally agree</span>
+            </label>
+
+            {/* MODAL FORM SUBMIT BUTTON */}
+            <button
+              type="submit"
+              className="modal-form__button button"
+              disabled={!checked ? true : false}
+            >
+              SAVE
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

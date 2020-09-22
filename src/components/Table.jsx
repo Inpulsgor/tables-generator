@@ -1,7 +1,6 @@
 import React from "react";
 
 import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
-import { EmptyTable } from "../services/helpers";
 
 const Table = ({
   tableData,
@@ -40,7 +39,7 @@ const Table = ({
             <th>City</th>
             <th></th>
           </tr>
-          {tableData.length > 0 ? (
+          {tableData.length > 0 &&
             tableData.map((contact) => {
               return (
                 <tr key={contact.id}>
@@ -66,10 +65,7 @@ const Table = ({
                   </td>
                 </tr>
               );
-            })
-          ) : (
-            <EmptyTable />
-          )}
+            })}
         </tbody>
       </table>
     </div>
