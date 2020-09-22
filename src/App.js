@@ -5,7 +5,7 @@ import { FormSlim, FormWide, Table, TableCopy, Modal } from "./components";
 import { initialValues, editedData } from "./services/helpers";
 
 const App = () => {
-  //!  < ---------- useState ---------- >
+  //  < ---------- useState ---------- >
   const [inputValues, setInputValues] = useState(initialValues);
   const [editedValues, setEditedValues] = useState(editedData);
 
@@ -16,7 +16,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [rowElementID, setRowElementID] = useState(null);
 
-  //!  < ---------- useCallback ---------- >
+  //  < ---------- useCallback ---------- >
   // close modal
   const handleCloseModal = useCallback((e) => {
     handleResetModal();
@@ -34,7 +34,7 @@ const App = () => {
     if (target.classList.contains("overlay")) setShowModal(false);
   }, []);
 
-  //!  < ---------- useEffect ---------- >
+  //  < ---------- useEffect ---------- >
   useEffect(() => {
     document.addEventListener("keydown", handleCloseModalOnEscape, false);
     document.addEventListener("mousedown", handleOverlayClick, false);
@@ -45,7 +45,7 @@ const App = () => {
     };
   }, [handleCloseModalOnEscape, handleOverlayClick]);
 
-  //!  < ----- FORM ----- >
+  //  < ----- FORM ----- >
   // get input values
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -81,7 +81,7 @@ const App = () => {
     (target.placeholder =
       target.name.charAt(0).toUpperCase() + target.name.slice(1));
 
-  //!  < ----- TABLE ----- >
+  //  < ----- TABLE ----- >
   // remove table row
   const handleDeleteRow = (id) => {
     setTableData(tableData.filter((item) => item.id !== id));
@@ -118,7 +118,7 @@ const App = () => {
     console.log(id);
   };
 
-  //!  < ----- MODAL ----- >
+  //  < ----- MODAL ----- >
   // toggle checkbox
   const toggleCheckbox = () => {
     setCheckbox(!checked);

@@ -88,9 +88,9 @@ button:focus {
 
   &__container {
     @include for-desktop-up {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      // display: flex;
+      // flex-direction: row;
+      // flex-wrap: wrap;
     }
   }
 }
