@@ -54,6 +54,10 @@
     @include for-tablet-only {
       width: 90%;
     }
+
+    @include for-desktop-up {
+      width: 48.2%;
+    }
   }
   // thead
   &__head {
@@ -80,7 +84,7 @@
   }
 
   &__body tr:nth-child(even) {
-    background-color: #d7edff;
+    background-color: #f1f1f1;
   }
 
   // edit & delete row
@@ -111,13 +115,22 @@ td {
 }
 
 td {
-  border: 1px solid #ddd;
+  border: 1px solid $table-border-color;
   line-height: 32px;
+
   @include for-phone-only {
     position: relative;
     display: block;
     text-align: right;
     padding: 0 15px;
+  }
+
+  @include for-phone-up {
+    font-size: 14px;
+  }
+
+  @include for-desktop-up {
+    font-size: 12px;
   }
 
   &::before {
@@ -140,7 +153,7 @@ td:last-child {
   padding-left: 44px;
   @include for-phone-only {
     text-align: center;
-    background-color: rgb(177, 177, 177);
+    background-color: #b1b1b1;
   }
 }
 
@@ -158,10 +171,11 @@ th:first-child {
 }
 th:last-child {
   border-top-right-radius: 3px;
-  width: 100%;
+  width: 32%;
 }
 
 tr {
+  border-color: $table-border-color;
   border: none;
   @include for-phone-only {
     display: block;

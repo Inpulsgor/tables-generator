@@ -175,13 +175,15 @@ const App = () => {
           />
         </div>
         {/* Table */}
-        <Table
-          tableData={tableData}
-          handleEditRow={handleEditRow}
-          handleDeleteRow={handleDeleteRow}
-          handleCopyTable={handleCopyTable}
-          handleDeleteTable={handleDeleteTable}
-        />
+        {tableData.length > 0 && (
+          <Table
+            tableData={tableData}
+            handleEditRow={handleEditRow}
+            handleDeleteRow={handleDeleteRow}
+            handleCopyTable={handleCopyTable}
+            handleDeleteTable={handleDeleteTable}
+          />
+        )}
         {/* Table Copy */}
         <ul className="table-copy__list">
           {tableDataCopy.length > 0 &&

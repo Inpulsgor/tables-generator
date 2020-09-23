@@ -96,6 +96,7 @@ button:focus {
 
     @include for-desktop-up {
       justify-content: space-around;
+      margin-bottom: 30px;
     }
   }
 }
