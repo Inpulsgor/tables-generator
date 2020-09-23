@@ -1,7 +1,6 @@
 @import "variables";
 
 .form-slim {
-  font-family: $main-font;
   flex-direction: column;
   justify-content: space-between;
 
@@ -16,7 +15,7 @@
   }
 
   @include for-tablet-up {
-    width: 280px;
+    width: 42.42%;
     padding: 18px 17px 23px;
     margin-bottom: 30px;
   }
@@ -42,10 +41,5 @@
     &:last-of-type {
       margin-bottom: 30px;
     }
-  }
-
-  &__button {
-    height: 40px;
-    border-radius: $border-radius;
   }
 }

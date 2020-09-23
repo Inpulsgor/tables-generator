@@ -1,8 +1,6 @@
 @import "variables";
 
 .form-wide {
-  font-family: $main-font;
-
   @include for-phone-only {
     flex-direction: column;
     justify-content: space-between;
@@ -52,12 +50,8 @@
   }
 
   &__button {
-    height: 40px;
-    border: none;
-    border-radius: $border-radius;
-
     @include for-tablet-up {
-      width: 245px;
+      width: 48%;
       margin: 0 auto;
     }
   }

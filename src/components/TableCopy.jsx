@@ -3,12 +3,13 @@ import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const TableCopy = ({
   copy,
+  tabletUp,
   handleDeleteRowCopy,
   handleDeleteTable,
   handleEditRow,
 }) => {
   return (
-    <li className="table-copy__list-item">
+    <li className="tables__list-item">
       <div className="table-container">
         <div className="control">
           <button
@@ -20,15 +21,17 @@ const TableCopy = ({
           </button>
         </div>
         <table className="table">
-          <thead className="table__head">
-            <tr>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Age</th>
-              <th>City</th>
-              <th></th>
-            </tr>
-          </thead>
+          {tabletUp && (
+            <thead className="table__head">
+              <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>City</th>
+                <th></th>
+              </tr>
+            </thead>
+          )}
           <tbody className="table__body">
             {copy &&
               copy.map((contact) => {

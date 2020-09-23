@@ -3,6 +3,7 @@ import React from "react";
 import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const Table = ({
+  tabletUp,
   tableData,
   handleEditRow,
   handleDeleteRow,
@@ -33,15 +34,17 @@ const Table = ({
 
       {/* TABLE */}
       <table className="table">
-        <thead className="table__head">
-          <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Age</th>
-            <th>City</th>
-            <th colspan="2"></th>
-          </tr>
-        </thead>
+        {tabletUp && (
+          <thead className="table__head">
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Age</th>
+              <th>City</th>
+              <th></th>
+            </tr>
+          </thead>
+        )}
         <tbody className="table__body">
           {tableData.length > 0 &&
             tableData.map((contact) => {

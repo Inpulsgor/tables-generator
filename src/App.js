@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useMediaPredicate } from "react-media-hook";
 import { v4 as uuidv4 } from "uuid";
 
-import { FormSlim, FormWide, Table, TableCopy, Modal } from "./components";
 import { initialValues, editedData } from "./services/helpers";
+import {
+  FormSlim,
+  FormWide,
+  Table,
+  TableCopiesList,
+  Modal,
+} from "./components";
 
 const App = () => {
   //  < ---------- useState ---------- >
@@ -34,6 +41,9 @@ const App = () => {
     if (target.classList.contains("overlay")) setShowModal(false);
   }, []);
 
+  //  < ---------- useMedia ---------- >
+  const tabletUp = useMediaPredicate("(min-width: 768px)");
+
   //  < ---------- useEffect ---------- >
   useEffect(() => {
     document.addEventListener("keydown", handleCloseModalOnEscape, false);
@@ -55,9 +65,8 @@ const App = () => {
     }
     setInputValues((prevState) => ({ ...prevState, [name]: value }));
   };
-  // reset input fields
+  // reset form input fields
   const handleReset = () => setInputValues({ ...initialValues });
-  const handleResetModal = () => setEditedValues({ ...editedData });
   // submit form data
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -127,7 +136,8 @@ const App = () => {
   const toggleCheckbox = () => {
     setCheckbox(!checked);
   };
-
+  // reset modal form input fields
+  const handleResetModal = () => setEditedValues({ ...editedData });
   //! save editing changes
   const handleModalSubmit = (e) => {
     e.preventDefault();
@@ -155,55 +165,47 @@ const App = () => {
 
   return (
     <main className="main">
-      <div className="main__container container">
-        <div className="main__forms">
-          {/* Form 1 */}
+      <div className="container">
+        {/* FORMS */}
+        <section className="forms">
           <FormSlim
+            onFocus={onFocus}
+            onBlur={onBlur}
             inputValues={inputValues}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
-            onFocus={onFocus}
-            onBlur={onBlur}
           />
-          {/* Form 2 */}
           <FormWide
+            onFocus={onFocus}
+            onBlur={onBlur}
             inputValues={inputValues}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
-            onFocus={onFocus}
-            onBlur={onBlur}
           />
-        </div>
-        {/* Table */}
-        {tableData.length > 0 && (
-          <Table
-            tableData={tableData}
+        </section>
+
+        {/* TABLES */}
+        <section className="tables">
+          {tableData.length > 0 && (
+            <Table
+              tabletUp={tabletUp}
+              tableData={tableData}
+              handleEditRow={handleEditRow}
+              handleDeleteRow={handleDeleteRow}
+              handleCopyTable={handleCopyTable}
+              handleDeleteTable={handleDeleteTable}
+            />
+          )}
+          <TableCopiesList
+            tabletUp={tabletUp}
+            tableDataCopy={tableDataCopy}
             handleEditRow={handleEditRow}
-            handleDeleteRow={handleDeleteRow}
-            handleCopyTable={handleCopyTable}
+            handleDeleteRowCopy={handleDeleteRowCopy}
             handleDeleteTable={handleDeleteTable}
           />
-        )}
-        {/* Table Copy */}
-        <ul className="table-copy__list">
-          {tableDataCopy.length > 0 &&
-            tableDataCopy.map((copy, idx) => {
-              if (copy.length > 0) {
-                return (
-                  <TableCopy
-                    key={idx}
-                    copy={copy}
-                    tableDataCopy={tableDataCopy}
-                    handleEditRow={handleEditRow}
-                    handleDeleteRowCopy={handleDeleteRowCopy}
-                    handleDeleteTable={handleDeleteTable}
-                  />
-                );
-              }
-              return null;
-            })}
-        </ul>
-        {/* Modal form */}
+        </section>
+
+        {/* MODAL */}
         {showModal && (
           <Modal
             editedValues={editedValues}
