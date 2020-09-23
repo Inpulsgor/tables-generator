@@ -10,7 +10,12 @@ const TableCopy = ({
   handleEditRow,
 }) => {
   return (
-    <li className="tables__list-item">
+    <motion.li
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2 }}
+      className="tables__list-item"
+    >
       <div className="table-container">
         <div className="control">
           <motion.button
@@ -66,7 +71,7 @@ const TableCopy = ({
           </tbody>
         </table>
       </div>
-    </li>
+    </motion.li>
   );
 };
 

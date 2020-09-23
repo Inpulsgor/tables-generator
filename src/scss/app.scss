@@ -121,6 +121,12 @@ button:focus {
   border-radius: $border-radius;
 }
 
+button:disabled,
+button[disabled] {
+  background-color: #cccccc;
+  color: #fff;
+}
+
 // --- TABLES SECTION ---
 .tables {
   &__list {

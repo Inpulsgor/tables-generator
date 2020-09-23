@@ -5,6 +5,7 @@ const Modal = ({
   onFocus,
   onBlur,
   checked,
+  motion,
   editedValues: { modalName, modalSurname, modalCity },
   toggleCheckbox,
   handleModalSubmit,
@@ -13,17 +14,24 @@ const Modal = ({
 }) => {
   return (
     <div className="overlay">
-      <div className="modal">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="modal"
+      >
         {/* MODAL HEADING */}
         <div className="modal__heading">
           <p className="modal__description">Edit name</p>
-          <button
+          <motion.button
             type="button"
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 1 }}
             className="modal__button_close"
             onClick={handleCloseModal}
           >
             <DeleteButton />
-          </button>
+          </motion.button>
         </div>
 
         {/* MODAL FORM INPUTS */}
@@ -78,16 +86,23 @@ const Modal = ({
             </label>
 
             {/* MODAL FORM SUBMIT BUTTON */}
-            <button
+            <motion.button
               type="submit"
-              className="modal-form__button button"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 1 }}
+              // className="modal-form__button button"
+              className={
+                !checked
+                  ? "modal-form__button disabled button"
+                  : "modal-form__button button"
+              }
               disabled={!checked ? true : false}
             >
               SAVE
-            </button>
+            </motion.button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };

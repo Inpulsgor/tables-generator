@@ -12,7 +12,12 @@ const Table = ({
   handleDeleteTable,
 }) => {
   return (
-    <div className="table-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2 }}
+      className="table-container"
+    >
       {/* COPY & DELETE TABLE */}
       {tableData.length > 0 && (
         <div className="control">
@@ -54,7 +59,12 @@ const Table = ({
           {tableData.length > 0 &&
             tableData.map((contact) => {
               return (
-                <tr key={contact.id}>
+                <motion.tr
+                  key={contact.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                >
                   <td data-label="Name">{contact.name}</td>
                   <td data-label="Surname">{contact.surname}</td>
                   <td data-label="Age">{contact.age}</td>
@@ -75,12 +85,12 @@ const Table = ({
                       Delete
                     </button>
                   </td>
-                </tr>
+                </motion.tr>
               );
             })}
         </tbody>
       </table>
-    </div>
+    </motion.div>
   );
 };
 

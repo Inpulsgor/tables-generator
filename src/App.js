@@ -213,6 +213,7 @@ const App = () => {
         {/* MODAL */}
         {showModal && (
           <Modal
+            motion={motion}
             editedValues={editedValues}
             onFocus={onFocus}
             onBlur={onBlur}
