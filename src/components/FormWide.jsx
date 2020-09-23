@@ -11,8 +11,8 @@ const FormWide = ({
   return (
     <form className="form-wide form" onSubmit={handleSubmit}>
       <input
-        minlength="2"
-        maxlength="15"
+        minLength="2"
+        maxLength="15"
         required
         name="name"
         type="text"
@@ -25,8 +25,8 @@ const FormWide = ({
       />
 
       <input
-        minlength="2"
-        maxlength="15"
+        minLength="2"
+        maxLength="15"
         required
         name="surname"
         type="text"
@@ -53,8 +53,8 @@ const FormWide = ({
       />
 
       <input
-        minlength="2"
-        maxlength="15"
+        minLength="2"
+        maxLength="15"
         required
         name="city"
         type="text"

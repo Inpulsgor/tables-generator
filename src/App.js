@@ -154,27 +154,28 @@ const App = () => {
   };
   // reset modal form input fields
   const handleResetModal = () => setEditedValues({ ...editedData });
-  //! save editing changes
+  // save editing changes
   const handleModalSubmit = (e) => {
     e.preventDefault();
     const { modalName, modalSurname, modalCity } = editedValues;
 
-    const update = tableDataCopy.map((item) => {
-      if (item.id === rowElementID) {
-        return {
-          id: item.id,
-          name: modalName,
-          surname: modalSurname,
-          city: modalCity,
-          age: item.age,
-        };
-      }
-      return item;
-    });
+    setTableDataCopy(
+      tableDataCopy.map((item) => {
+        return item.map((itemIn) => {
+          if (itemIn.id === rowElementID) {
+            return {
+              id: itemIn.id,
+              name: modalName,
+              surname: modalSurname,
+              city: modalCity,
+              age: itemIn.age,
+            };
+          }
+          return itemIn;
+        });
+      })
+    );
 
-    // console.log(tableDataCopy);
-    // console.log("update", update);
-    setTableDataCopy(update);
     setCheckbox(false);
     handleCloseModal();
   };
