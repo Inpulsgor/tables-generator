@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { useMediaPredicate } from "react-media-hook";
 import { v4 as uuidv4 } from "uuid";
 
@@ -169,6 +170,7 @@ const App = () => {
         {/* FORMS */}
         <section className="forms">
           <FormSlim
+            motion={motion}
             onFocus={onFocus}
             onBlur={onBlur}
             inputValues={inputValues}
@@ -176,6 +178,7 @@ const App = () => {
             handleSubmit={handleSubmit}
           />
           <FormWide
+            motion={motion}
             onFocus={onFocus}
             onBlur={onBlur}
             inputValues={inputValues}
@@ -188,6 +191,7 @@ const App = () => {
         <section className="tables">
           {tableData.length > 0 && (
             <Table
+              motion={motion}
               tabletUp={tabletUp}
               tableData={tableData}
               handleEditRow={handleEditRow}
@@ -197,6 +201,7 @@ const App = () => {
             />
           )}
           <TableCopiesList
+            motion={motion}
             tabletUp={tabletUp}
             tableDataCopy={tableDataCopy}
             handleEditRow={handleEditRow}

@@ -2,6 +2,7 @@ import React from "react";
 import TableCopy from "./TableCopy";
 
 const TableCopiesList = ({
+  motion,
   tabletUp,
   tableDataCopy,
   handleEditRow,
@@ -16,6 +17,7 @@ const TableCopiesList = ({
             return (
               <TableCopy
                 key={idx}
+                motion={motion}
                 copy={copy}
                 tabletUp={tabletUp}
                 tableDataCopy={tableDataCopy}

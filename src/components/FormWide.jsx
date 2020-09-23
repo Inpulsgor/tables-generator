@@ -1,6 +1,7 @@
 import React from "react";
 
 const FormWide = ({
+  motion,
   handleChange,
   handleSubmit,
   onFocus,
@@ -57,9 +58,14 @@ const FormWide = ({
         className="form-wide__input"
       />
 
-      <button type="submit" className="form-wide__button button">
+      <motion.button
+        type="submit"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 1 }}
+        className="form-wide__button button"
+      >
         add
-      </button>
+      </motion.button>
     </form>
   );
 };

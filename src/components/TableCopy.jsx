@@ -3,6 +3,7 @@ import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const TableCopy = ({
   copy,
+  motion,
   tabletUp,
   handleDeleteRowCopy,
   handleDeleteTable,
@@ -12,13 +13,15 @@ const TableCopy = ({
     <li className="tables__list-item">
       <div className="table-container">
         <div className="control">
-          <button
+          <motion.button
             type="button"
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 1 }}
             className="control__button_delete"
             onClick={handleDeleteTable}
           >
             <DeleteButton />
-          </button>
+          </motion.button>
         </div>
         <table className="table">
           {tabletUp && (

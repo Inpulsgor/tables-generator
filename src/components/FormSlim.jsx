@@ -1,6 +1,7 @@
 import React from "react";
 
 const FormSlim = ({
+  motion,
   handleChange,
   handleSubmit,
   onFocus,
@@ -57,9 +58,14 @@ const FormSlim = ({
         className="form-slim__input"
       />
 
-      <button type="submit" className="form-slim__button button">
+      <motion.button
+        type="submit"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 1 }}
+        className="form-slim__button button"
+      >
         add
-      </button>
+      </motion.button>
     </form>
   );
 };
