@@ -20,8 +20,8 @@ const TableCopy = ({
           </button>
         </div>
         <table className="table">
-          <thead className="table__heading">
-            <tr className="table__heading">
+          <thead className="table__head">
+            <tr>
               <th>Name</th>
               <th>Surname</th>
               <th>Age</th>
@@ -34,10 +34,10 @@ const TableCopy = ({
               copy.map((contact) => {
                 return (
                   <tr key={contact.id}>
-                    <td>{contact.name}</td>
-                    <td>{contact.surname}</td>
-                    <td>{contact.age}</td>
-                    <td>{contact.city}</td>
+                    <td data-label="Name">{contact.name}</td>
+                    <td data-label="Surname">{contact.surname}</td>
+                    <td data-label="Age">{contact.age}</td>
+                    <td data-label="City">{contact.city}</td>
                     <td>
                       <button
                         type="button"

@@ -24,7 +24,9 @@
   @include for-desktop-up {
     font-size: $main-font-size;
     line-height: 30px;
-    margin-right: 166px;
+    width: 22.7%;
+    margin: 0;
+    margin-right: 0;
   }
 
   &__input {

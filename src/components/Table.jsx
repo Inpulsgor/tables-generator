@@ -12,32 +12,34 @@ const Table = ({
   return (
     <div className="table-container">
       {/* COPY & DELETE TABLE */}
-      <div className="control">
-        <button
-          type="button"
-          className="control__button_copy"
-          onClick={handleCopyTable}
-        >
-          Copy table
-        </button>
-        <button
-          type="button"
-          className="control__button_delete"
-          onClick={handleDeleteTable}
-        >
-          <DeleteButton />
-        </button>
-      </div>
+      {tableData.length > 0 && (
+        <div className="control">
+          <button
+            type="button"
+            className="control__button_copy"
+            onClick={handleCopyTable}
+          >
+            Copy table
+          </button>
+          <button
+            type="button"
+            className="control__button_delete"
+            onClick={handleDeleteTable}
+          >
+            <DeleteButton />
+          </button>
+        </div>
+      )}
 
       {/* TABLE */}
       <table className="table">
-        <thead className="table__heading">
+        <thead className="table__head">
           <tr>
             <th>Name</th>
             <th>Surname</th>
             <th>Age</th>
             <th>City</th>
-            <th></th>
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody className="table__body">
@@ -45,10 +47,10 @@ const Table = ({
             tableData.map((contact) => {
               return (
                 <tr key={contact.id}>
-                  <td>{contact.name}</td>
-                  <td>{contact.surname}</td>
-                  <td>{contact.age}</td>
-                  <td>{contact.city}</td>
+                  <td data-label="Name">{contact.name}</td>
+                  <td data-label="Surname">{contact.surname}</td>
+                  <td data-label="Age">{contact.age}</td>
+                  <td data-label="City">{contact.city}</td>
                   <td>
                     <button
                       type="button"

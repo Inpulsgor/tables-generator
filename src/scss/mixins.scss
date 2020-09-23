@@ -1,5 +1,17 @@
 @mixin for-phone-up {
-  @media (min-width: 320) {
+  @media (min-width: 320px) {
+    @content;
+  }
+}
+
+@mixin for-phone-m-up {
+  @media (min-width: 375px) {
+    @content;
+  }
+}
+
+@mixin for-phone-l-up {
+  @media (min-width: 425px) {
     @content;
   }
 }

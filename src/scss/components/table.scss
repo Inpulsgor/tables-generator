@@ -1,24 +1,12 @@
 @import "variables";
 
-.table-container {
-  font-family: $main-font;
-  width: 48%;
-  margin: 0 auto;
-  margin-bottom: 30px;
-}
-
-.table-copy-list {
-  margin: 0 auto;
-  width: 100%;
-}
-
 // BUTTONS - COPY TABLE & DELETE TABLE
 .control {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
 
-  // COPY TABLE - BUTTON
+  // copy table btn
   &__button_copy {
     font-size: $main-font-size;
     line-height: 24px;
@@ -32,7 +20,7 @@
     border-radius: $border-radius;
   }
 
-  // DELETE TABLE - BUTTON
+  // delete table btn
   &__button_delete {
     border: none;
     background-color: transparent;
@@ -43,14 +31,59 @@
 
 // TABLE
 .table {
-  border: none;
   font-size: $main-font-size;
   border-collapse: collapse;
-  border-radius: 13px;
-  border: 1px solid #8c9296;
   width: 100%;
+  // table container
+  &-container {
+    font-family: $main-font;
+    width: 48%;
+    margin-bottom: 30px;
+    margin: 0 auto;
 
-  // EDIT ROW & DELETE ROW
+    @include for-phone-only {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    @include for-phone-m-up {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    @include for-tablet-only {
+      width: 90%;
+    }
+  }
+  // thead
+  &__head {
+    border: none;
+
+    @include for-phone-only {
+      clip: rect(0 0 0 0);
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      position: absolute;
+    }
+  }
+  // tbody
+  &__body {
+    @include for-phone-only {
+      display: block;
+    }
+  }
+
+  &__body tr {
+    background-color: #fff;
+  }
+
+  &__body tr:nth-child(even) {
+    background-color: #d7edff;
+  }
+
+  // edit & delete row
   &__button_edit,
   &__button_delete {
     background-color: transparent;
@@ -64,7 +97,7 @@
     color: $hover-edit-delete;
   }
 
-  // EDIT ROW - BUTTON
+  // edit row btn
   &__button_edit {
     margin-right: 52px;
   }
@@ -75,23 +108,40 @@ td {
   display: table-cell;
   padding-left: 14px;
   text-align: left;
-  line-height: 32px;
+}
+
+td {
   border: 1px solid #ddd;
-  background-color: #fff;
+  line-height: 32px;
+  @include for-phone-only {
+    position: relative;
+    display: block;
+    text-align: right;
+    padding: 0 15px;
+  }
+
+  &::before {
+    @include for-phone-only {
+      content: attr(data-label);
+      background-color: $table-header-background;
+      color: #fff;
+
+      position: absolute;
+      font-weight: 700;
+      text-align: left;
+      left: 0;
+      padding-left: 15px;
+      width: 30%;
+    }
+  }
 }
 
 td:last-child {
   padding-left: 44px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-thead {
-  border: none;
-
-  border-radius: 15px;
+  @include for-phone-only {
+    text-align: center;
+    background-color: rgb(177, 177, 177);
+  }
 }
 
 th {
@@ -100,17 +150,20 @@ th {
   font-weight: 300;
   line-height: 30px;
   background-color: $table-header-background;
-  color: white;
+  color: $table-header-font-color;
 }
 
 th:first-child {
-  border-top-left-radius: 15px;
+  border-top-left-radius: 3px;
 }
-
 th:last-child {
-  border-top-right-radius: 15px;
+  border-top-right-radius: 3px;
+  width: 100%;
 }
 
 tr {
   border: none;
+  @include for-phone-only {
+    display: block;
+  }
 }

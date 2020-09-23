@@ -82,15 +82,17 @@ const App = () => {
       target.name.charAt(0).toUpperCase() + target.name.slice(1));
 
   //  < ----- TABLE ----- >
-  // delete row(original table) 
+  // delete row(original table)
   const handleDeleteRow = (id) => {
     setTableData(tableData.filter((item) => item.id !== id));
   };
-  // delete row(copied table) 
+  // delete row(copied table)
   const handleDeleteRowCopy = (id) => {
-    setTableDataCopy(tableDataCopy.map((item) => {
-      return item.filter(itm => itm.id !== id)
-    }));
+    setTableDataCopy(
+      tableDataCopy.map((item) => {
+        return item.filter((itm) => itm.id !== id);
+      })
+    );
   };
   // edit table row (open modal)
   const handleEditRow = (id) => {
@@ -113,7 +115,7 @@ const App = () => {
       });
     }
 
-    setTableDataCopy(prev => [...prev, setNewID]);
+    setTableDataCopy((prev) => [...prev, setNewID]);
   };
   //! delete table copy
   const handleDeleteTable = (e) => {
@@ -154,47 +156,50 @@ const App = () => {
   return (
     <main className="main">
       <div className="main__container container">
-        {/* Form 1 */}
-        <FormSlim
-          inputValues={inputValues}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
-        {/* Form 2 */}
-        <FormWide
-          inputValues={inputValues}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
+        <div className="main__forms">
+          {/* Form 1 */}
+          <FormSlim
+            inputValues={inputValues}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+          {/* Form 2 */}
+          <FormWide
+            inputValues={inputValues}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+        </div>
         {/* Table */}
-      <Table
-        tableData={tableData}
-        handleEditRow={handleEditRow}
-        handleDeleteRow={handleDeleteRow}
-        handleCopyTable={handleCopyTable}
-        handleDeleteTable={handleDeleteTable}
-      />
+        <Table
+          tableData={tableData}
+          handleEditRow={handleEditRow}
+          handleDeleteRow={handleDeleteRow}
+          handleCopyTable={handleCopyTable}
+          handleDeleteTable={handleDeleteTable}
+        />
         {/* Table Copy */}
         <ul className="table-copy__list">
-          {tableDataCopy.length > 0 && tableDataCopy.map((copy, idx) => {
-            console.log(copy)
-            return (
-              <TableCopy
-                key={idx}
-                copy={copy}
-                tableDataCopy={tableDataCopy}
-                handleEditRow={handleEditRow}
-                handleDeleteRowCopy={handleDeleteRowCopy}
-                handleDeleteTable={handleDeleteTable}
-              />
-            )
-          })
-            
-          }
+          {tableDataCopy.length > 0 &&
+            tableDataCopy.map((copy, idx) => {
+              if (copy.length > 0) {
+                return (
+                  <TableCopy
+                    key={idx}
+                    copy={copy}
+                    tableDataCopy={tableDataCopy}
+                    handleEditRow={handleEditRow}
+                    handleDeleteRowCopy={handleDeleteRowCopy}
+                    handleDeleteTable={handleDeleteTable}
+                  />
+                );
+              }
+              return null;
+            })}
         </ul>
         {/* Modal form */}
         {showModal && (

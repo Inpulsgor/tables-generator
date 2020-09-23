@@ -24,8 +24,17 @@
   padding-bottom: 40px;
   transform: translate(-50%, -50%);
 
+  @include for-phone-only {
+    width: 95%;
+  }
+
+  @include for-phone-l-up {
+    width: 75%;
+  }
+
   // MODAL HEADING
   &__heading {
+    font-size: $main-font-size;
     min-height: 37px;
     display: flex;
     justify-content: space-between;
@@ -41,8 +50,11 @@
 
   &__description {
     font-weight: 300;
-    font-size: 12px;
     color: $button-font-color;
+
+    @include for-phone-only {
+      font-size: 14px;
+    }
   }
 
   &__button_close {
@@ -61,6 +73,10 @@
     justify-content: space-between;
     padding: 0 20px;
 
+    @include for-phone-only {
+      flex-direction: column;
+    }
+
     // MODAL FORM INPUTS
     &__container {
       position: relative;
@@ -68,6 +84,10 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+
+      @include for-phone-only {
+        flex-direction: column;
+      }
     }
 
     &__container:first-child {
@@ -81,6 +101,16 @@
       height: 40px;
       padding-left: 16px;
       width: 31.5%;
+
+      &:not(:last-of-type) {
+        @include for-phone-only {
+          margin-bottom: 20px;
+        }
+      }
+
+      @include for-phone-only {
+        width: 100%;
+      }
     }
 
     // MODAL FORM CHECKBOX
@@ -96,6 +126,11 @@
     &__label {
       padding-top: 3px;
       font-size: $main-font-size;
+
+      @include for-phone-only {
+        width: 100%;
+        margin-bottom: 20px;
+      }
     }
 
     &__label-text {
@@ -108,6 +143,10 @@
       width: 65.5%;
       height: 40px;
       border-radius: $border-radius;
+
+      @include for-phone-only {
+        width: 100%;
+      }
 
       &_disabled {
         cursor: not-allowed;

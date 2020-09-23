@@ -77,7 +77,6 @@ button:focus {
 }
 
 .main {
-  margin: 0;
   width: 100%;
   height: 100%;
   padding: 45px 0;
@@ -86,18 +85,23 @@ button:focus {
     padding-top: 10px;
   }
 
-  &__container {
+  // forms wrapper
+  &__forms {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include for-phone-only {
+      margin-bottom: 20px;
+    }
+
     @include for-desktop-up {
-      // display: flex;
-      // flex-direction: row;
-      // flex-wrap: wrap;
+      justify-content: space-around;
     }
   }
 }
 
 .form {
   display: flex;
-  // height: auto;
   background-color: $form-background;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
@@ -110,6 +114,11 @@ button:focus {
   background-color: $button-background;
   text-transform: uppercase;
   border: none;
+}
+
+.table-copy-list {
+  margin: 0 auto;
+  width: 100%;
 }
 
 .container {
