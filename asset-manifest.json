@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/workTest/static/css/main.7ce4fc3f.chunk.css",
+    "main.js": "/workTest/static/js/main.10ce27bd.chunk.js",
+    "main.js.map": "/workTest/static/js/main.10ce27bd.chunk.js.map",
+    "runtime-main.js": "/workTest/static/js/runtime-main.751a193d.js",
+    "runtime-main.js.map": "/workTest/static/js/runtime-main.751a193d.js.map",
+    "static/js/2.47b3e191.chunk.js": "/workTest/static/js/2.47b3e191.chunk.js",
+    "static/js/2.47b3e191.chunk.js.map": "/workTest/static/js/2.47b3e191.chunk.js.map",
+    "index.html": "/workTest/index.html",
+    "precache-manifest.d9862251411e02f95442b855c6ce8bf7.js": "/workTest/precache-manifest.d9862251411e02f95442b855c6ce8bf7.js",
+    "service-worker.js": "/workTest/service-worker.js",
+    "static/css/main.7ce4fc3f.chunk.css.map": "/workTest/static/css/main.7ce4fc3f.chunk.css.map",
+    "static/js/2.47b3e191.chunk.js.LICENSE.txt": "/workTest/static/js/2.47b3e191.chunk.js.LICENSE.txt",
+    "static/media/btn_delete.fae0c854.svg": "/workTest/static/media/btn_delete.fae0c854.svg",
+    "static/media/app.scss": "/workTest/static/media/roboto-v20-latin-regular.60fa3c06.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.751a193d.js",
+    "static/js/2.47b3e191.chunk.js",
+    "static/css/main.7ce4fc3f.chunk.css",
+    "static/js/main.10ce27bd.chunk.js"
+  ]
+}
