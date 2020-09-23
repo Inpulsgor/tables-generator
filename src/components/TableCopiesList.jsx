@@ -12,13 +12,14 @@ const TableCopiesList = ({
   return (
     <ul className="tables__list">
       {tableDataCopy.length > 0 &&
-        tableDataCopy.map((copy, idx) => {
-          if (copy.length > 0) {
+        tableDataCopy.map((dataCopy, idx) => {
+          if (dataCopy.length > 0) {
             return (
               <TableCopy
+                index={idx}
                 key={idx}
                 motion={motion}
-                copy={copy}
+                dataCopy={dataCopy}
                 tabletUp={tabletUp}
                 tableDataCopy={tableDataCopy}
                 handleEditRow={handleEditRow}

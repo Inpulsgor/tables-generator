@@ -76,6 +76,20 @@ button:focus {
   outline: none;
 }
 
+button:disabled,
+button[disabled] {
+  background-color: #cccccc;
+  color: #fff;
+}
+
+input:focus:invalid {
+  border: 1px solid #ff0000;
+}
+
+input:focus:valid {
+  border: 1px solid #008600;
+}
+
 // --- MAIN SECTION ---
 .main {
   width: 100%;
@@ -119,12 +133,6 @@ button:focus {
   color: $button-font-color;
   background-color: $button-background;
   border-radius: $border-radius;
-}
-
-button:disabled,
-button[disabled] {
-  background-color: #cccccc;
-  color: #fff;
 }
 
 // --- TABLES SECTION ---

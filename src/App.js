@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+
 import { useMediaPredicate } from "react-media-hook";
+import { motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
 import { initialValues, editedData } from "./services/helpers";
@@ -71,18 +72,20 @@ const App = () => {
   // submit form data
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { name, surname, age, city } = inputValues;
-    const contact = {
-      id: uuidv4(),
-      name,
-      surname,
-      age,
-      city,
-    };
 
-    setTableData([...tableData, contact]);
-    handleReset();
+    if ((name !== "" && surname !== "" && age !== "", city !== "")) {
+      const contact = {
+        id: uuidv4(),
+        name,
+        surname,
+        age,
+        city,
+      };
+
+      setTableData([...tableData, contact]);
+      handleReset();
+    }
   };
   // hide input placeholder
   const onFocus = ({ target }) => (target.placeholder = "");
@@ -127,9 +130,21 @@ const App = () => {
 
     setTableDataCopy((prev) => [...prev, setNewID]);
   };
-  //! delete table copy
+  // delete last table copy
+  const handleDeleteLastTableCopy = () => {
+    setTableDataCopy(tableDataCopy.slice(0, -1));
+  };
+  // delete table copy
   const handleDeleteTable = (e) => {
-    console.log(e.target);
+    if (e.target.attributes.getNamedItem("data-index") === null) {
+      return;
+    }
+    if (e.target.tagName === "BUTTON") {
+      const index = parseInt(
+        e.target.attributes.getNamedItem("data-index").value
+      );
+      setTableDataCopy(tableDataCopy.filter((item, idx) => idx !== index));
+    }
   };
 
   //  < ----- MODAL ----- >
@@ -189,17 +204,15 @@ const App = () => {
 
         {/* TABLES */}
         <section className="tables">
-          {tableData.length > 0 && (
-            <Table
-              motion={motion}
-              tabletUp={tabletUp}
-              tableData={tableData}
-              handleEditRow={handleEditRow}
-              handleDeleteRow={handleDeleteRow}
-              handleCopyTable={handleCopyTable}
-              handleDeleteTable={handleDeleteTable}
-            />
-          )}
+          <Table
+            motion={motion}
+            tabletUp={tabletUp}
+            tableData={tableData}
+            handleEditRow={handleEditRow}
+            handleDeleteRow={handleDeleteRow}
+            handleCopyTable={handleCopyTable}
+            handleDeleteLastTableCopy={handleDeleteLastTableCopy}
+          />
           <TableCopiesList
             motion={motion}
             tabletUp={tabletUp}

@@ -27,6 +27,10 @@
     margin-right: 12px;
     fill: #f04e34;
   }
+  // svg button icon
+  &__button_icon {
+    pointer-events: none;
+  }
 }
 
 // TABLE
@@ -62,15 +66,6 @@
   // thead
   &__head {
     border: none;
-
-    @include for-phone-only {
-      // clip: rect(0 0 0 0);
-      // width: 1px;
-      // height: 1px;
-      // margin: -1px;
-      // overflow: hidden;
-      // position: absolute;
-    }
   }
   // tbody
   &__body {

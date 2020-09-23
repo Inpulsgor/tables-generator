@@ -2,7 +2,8 @@ import React from "react";
 import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const TableCopy = ({
-  copy,
+  index,
+  dataCopy,
   motion,
   tabletUp,
   handleDeleteRowCopy,
@@ -19,13 +20,14 @@ const TableCopy = ({
       <div className="table-container">
         <div className="control">
           <motion.button
+            data-index={index}
             type="button"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 1 }}
             className="control__button_delete"
             onClick={handleDeleteTable}
           >
-            <DeleteButton />
+            <DeleteButton className="control__button_icon" />
           </motion.button>
         </div>
         <table className="table">
@@ -41,8 +43,8 @@ const TableCopy = ({
             </thead>
           )}
           <tbody className="table__body">
-            {copy &&
-              copy.map((contact) => {
+            {dataCopy &&
+              dataCopy.map((contact) => {
                 return (
                   <tr key={contact.id}>
                     <td data-label="Name">{contact.name}</td>

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ReactComponent as DeleteButton } from "../assets/btn_delete.svg";
 
 const Table = ({
@@ -9,7 +8,7 @@ const Table = ({
   handleEditRow,
   handleDeleteRow,
   handleCopyTable,
-  handleDeleteTable,
+  handleDeleteLastTableCopy,
 }) => {
   return (
     <motion.div
@@ -19,28 +18,26 @@ const Table = ({
       className="table-container"
     >
       {/* COPY & DELETE TABLE */}
-      {tableData.length > 0 && (
-        <div className="control">
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 1 }}
-            onClick={handleCopyTable}
-            className="control__button_copy"
-          >
-            Copy table
-          </motion.button>
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 1 }}
-            onClick={handleDeleteTable}
-            className="control__button_delete"
-          >
-            <DeleteButton />
-          </motion.button>
-        </div>
-      )}
+      <div className="control">
+        <motion.button
+          type="button"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 1 }}
+          onClick={handleCopyTable}
+          className="control__button_copy"
+        >
+          Copy table
+        </motion.button>
+        <motion.button
+          type="button"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 1 }}
+          onClick={handleDeleteLastTableCopy}
+          className="control__button_delete"
+        >
+          <DeleteButton className="control__button_icon" />
+        </motion.button>
+      </div>
 
       {/* TABLE */}
       <table className="table">

@@ -11,6 +11,8 @@ const FormSlim = ({
   return (
     <form className="form-slim form" onSubmit={handleSubmit}>
       <input
+        minlength="2"
+        maxlength="15"
         required
         name="name"
         type="text"
@@ -23,6 +25,8 @@ const FormSlim = ({
       />
 
       <input
+        minlength="2"
+        maxlength="15"
         required
         type="text"
         name="surname"
@@ -35,9 +39,11 @@ const FormSlim = ({
       />
 
       <input
+        min="1"
+        max="150"
         required
         name="age"
-        type="text"
+        type="number"
         value={age}
         placeholder="Age"
         onFocus={onFocus}
@@ -47,6 +53,8 @@ const FormSlim = ({
       />
 
       <input
+        minlength="2"
+        maxlength="15"
         required
         name="city"
         type="text"
