@@ -1,4 +1,4 @@
-Tables Generator - `https://inpulsgor.github.io/workTest/`
+Tables Generator - https://inpulsgor.github.io/workTest/
 ---
 ```shell
  ✓ заполнять можем только первую таблицу , остальные таблиы можем только редактировать
